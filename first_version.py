@@ -1,11 +1,13 @@
 NUMBER_OF_DISKS = 4
 number_of_moves = 2 ** NUMBER_OF_DISKS - 1
+## all disks placed on rod A as the game goes
 rods = {
     'A': list(range(NUMBER_OF_DISKS, 0, -1)),
     'B': [],
     'C': []
 }
 
+## makes the move of the top disk from one rod to another
 def make_allowed_move(rod1, rod2):    
     forward = False
     if not rods[rod2]:
@@ -21,11 +23,13 @@ def make_allowed_move(rod1, rod2):
     
     # display our progress
     print(rods, '\n')
-
+## solving the tower recursively | n is the number of disks, the source is the rod where to move the disks, the auxiliary is the extra rod, and the target is where the disks need to be placed
 def move(n, source, auxiliary, target):
     # display starting configuration
     print(rods, '\n')
+    ## i keeps track of the moves
     for i in range(number_of_moves):
+        ## this helps check which two rods are involved in the move
         remainder = (i + 1) % 3
         if remainder == 1:
             if n % 2 != 0:
